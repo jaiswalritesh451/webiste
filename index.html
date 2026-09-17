@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bent Ray Technologies — Software, Hosting &amp; Digital Solutions from Nepal</title>
+<meta name="description" content="Bent Ray Technologies builds accounting and payroll software, websites, mobile apps, and hosting for businesses in Nepal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --bg-soft:#f7f8fc; --surface:#ffffff; --surface-2:#f3f5fa; --surface-raised:#ffffff;
+    --text:#10121e; --muted:#5b6172; --muted-2:#8991a3;
+    --border:#e7e9f2; --border-soft:#eef0f6;
+    --accent:#ff5b2e; --accent-2:#0ea394; --accent-3:#5b5fef;
+    --accent-rgb:255,91,46; --accent2-rgb:14,163,148; --accent3-rgb:91,95,239;
+    --ribbon-from:#ff5b2e; --ribbon-to:#0ea394; --ribbon-text:#ffffff;
+    --shadow:0 10px 28px rgba(16,18,30,0.07); --shadow-lg:0 26px 64px rgba(16,18,30,0.14);
+    --radius-s:10px; --radius-m:18px; --radius-l:28px;
+    --maxw:1200px;
+  }
+  html[data-theme="maghesankranti"]{ --accent:#e0a300; --accent-2:#ff7a30; --accent-rgb:224,163,0; --accent2-rgb:255,122,48; --ribbon-from:#e0a300; --ribbon-to:#ff7a30; }
+  html[data-theme="holi"]{ --accent:#e8298c; --accent-2:#0ea394; --accent-rgb:232,41,140; --accent2-rgb:14,163,148; --ribbon-from:#e8298c; --ribbon-to:#f2b705; }
+  html[data-theme="newyear"]{ --accent:#1fa85c; --accent-2:#e0a300; --accent-rgb:31,168,92; --accent2-rgb:224,163,0; --ribbon-from:#1fa85c; --ribbon-to:#e0a300; }
+  html[data-theme="buddhajayanti"]{ --accent:#e08a2b; --accent-2:#3f9fd6; --accent-rgb:224,138,43; --accent2-rgb:63,159,214; --ribbon-from:#e08a2b; --ribbon-to:#3f9fd6; }
+  html[data-theme="teej"]{ --accent:#d21f30; --accent-2:#e0a300; --accent-rgb:210,31,48; --accent2-rgb:224,163,0; --ribbon-from:#d21f30; --ribbon-to:#ff8fa3; }
+  html[data-theme="dashain"]{ --accent:#e85b0f; --accent-2:#b3222a; --accent-rgb:232,91,15; --accent2-rgb:179,34,42; --ribbon-from:#e85b0f; --ribbon-to:#b3222a; }
+  html[data-theme="tihar"]{ --accent:#e0a300; --accent-2:#e85b0f; --accent-rgb:224,163,0; --accent2-rgb:232,91,15; --ribbon-from:#e0a300; --ribbon-to:#e85b0f; }
+  html[data-theme="christmas"]{ --accent:#c21f2d; --accent-2:#1f7a4d; --accent-rgb:194,31,45; --accent2-rgb:31,122,77; --ribbon-from:#1f7a4d; --ribbon-to:#c21f2d; }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"IBM Plex Sans", system-ui, sans-serif; line-height:1.55;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  h1,h2,h3,.font-display{ font-family:"Space Grotesk", system-ui, sans-serif; letter-spacing:-0.012em; }
+  .mono{ font-family:"IBM Plex Mono", monospace; }
+  a{ color:inherit; }
+  img,svg{ display:block; max-width:100%; }
+  section{ padding:104px 24px; position:relative; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; position:relative; }
+  ::selection{ background:rgba(var(--accent-rgb),0.22); }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+
+  /* ---------- reveal-on-scroll ---------- */
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  .reveal-stagger > *{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal-stagger.in > *{ opacity:1; transform:translateY(0); }
+  .reveal-stagger.in > *:nth-child(1){ transition-delay:.02s; }
+  .reveal-stagger.in > *:nth-child(2){ transition-delay:.09s; }
+  .reveal-stagger.in > *:nth-child(3){ transition-delay:.16s; }
+  .reveal-stagger.in > *:nth-child(4){ transition-delay:.23s; }
+  .reveal-stagger.in > *:nth-child(5){ transition-delay:.30s; }
+  .reveal-stagger.in > *:nth-child(6){ transition-delay:.37s; }
+  @media (prefers-reduced-motion:reduce){
+    .reveal,.reveal-stagger > *{ opacity:1 !important; transform:none !important; transition:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ---------- ribbon ---------- */
+  #ribbon{
+    display:none; align-items:center; justify-content:center; gap:14px;
+    padding:11px 20px; text-align:center; position:relative;
+    background:linear-gradient(90deg, var(--ribbon-from), var(--ribbon-to));
+    color:var(--ribbon-text); font-weight:600; font-size:14.5px;
+  }
+  #ribbon.show{ display:flex; }
+  #ribbon .rclose{
+    position:absolute; right:14px; top:50%; transform:translateY(-50%);
+    background:rgba(255,255,255,0.22); border:none; color:inherit; width:22px; height:22px;
+    border-radius:50%; cursor:pointer; font-size:14px; line-height:1; display:flex;
+    align-items:center; justify-content:center;
+  }
+  #ribbon .rclose:hover{ background:rgba(255,255,255,0.36); }
+
+  /* ---------- header ---------- */
+  header.site{
+    position:sticky; top:0; z-index:60;
+    background:rgba(255,255,255,0.78); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border-soft);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:var(--maxw); margin:0 auto; }
+  .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .brand .mark{ width:34px; height:34px; }
+  .brand .word{ font-family:"Space Grotesk"; font-weight:700; font-size:17px; color:var(--text); }
+  .brand .word span{ font-weight:500; color:var(--muted-2); display:block; font-size:10.5px; letter-spacing:0.03em; margin-top:-2px; }
+  nav.links{ display:flex; align-items:center; gap:30px; }
+  nav.links a{ text-decoration:none; color:var(--muted); font-size:14.5px; font-weight:500; transition:color .15s; position:relative; }
+  nav.links a::after{ content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px; background:var(--accent); transform:scaleX(0); transition:transform .2s; transform-origin:left; }
+  nav.links a:hover{ color:var(--text); }
+  nav.links a:hover::after{ transform:scaleX(1); }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:12px 22px; border-radius:999px; font-weight:600; font-size:14.5px;
+    text-decoration:none; cursor:pointer; border:1px solid transparent; transition:transform .18s, box-shadow .18s, filter .15s;
+  }
+  .btn-primary{ background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#fff; box-shadow:0 8px 20px rgba(var(--accent-rgb),0.28); }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 14px 28px rgba(var(--accent-rgb),0.34); }
+  .btn-ghost{ border-color:var(--border); color:var(--text); background:var(--surface); }
+  .btn-ghost:hover{ border-color:var(--accent); color:var(--accent); }
+  .navcta{ display:flex; align-items:center; gap:14px; }
+  .burger{ display:none; background:none; border:1px solid var(--border); border-radius:8px; width:38px; height:38px; color:var(--text); cursor:pointer; }
+
+  /* ---------- hero ---------- */
+  .hero{ padding:88px 24px 30px; overflow:hidden; }
+  .hero-bg{ position:absolute; inset:-10% -10% auto -10%; height:120%; z-index:-1; pointer-events:none; }
+  .blob{ position:absolute; border-radius:50%; filter:blur(70px); opacity:0.35; }
+  .blob1{ width:420px; height:420px; background:var(--accent); top:-120px; left:-100px; animation:float1 16s ease-in-out infinite; }
+  .blob2{ width:380px; height:380px; background:var(--accent-3); top:60px; right:-140px; animation:float2 20s ease-in-out infinite; }
+  .blob3{ width:300px; height:300px; background:var(--accent-2); bottom:-140px; left:38%; animation:float1 18s ease-in-out infinite reverse; }
+  @keyframes float1{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(30px,40px) scale(1.08); } }
+  @keyframes float2{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(-40px,30px) scale(0.94); } }
+
+  .hero .wrap{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border-radius:999px;
+    border:1px solid var(--border); font-size:13px; color:var(--muted); margin-bottom:24px; background:var(--surface);
+  }
+  .eyebrow .dot{ width:7px; height:7px; border-radius:50%; background:var(--accent); animation:pulse 2s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:0.5; transform:scale(0.75); } }
+  .hero h1{ font-size:clamp(34px,4.6vw,54px); line-height:1.06; margin:0 0 22px; font-weight:700; }
+  .hero h1 .grad{ background:linear-gradient(100deg, var(--accent), var(--accent-3) 60%, var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p.lead{ color:var(--muted); font-size:18px; max-width:48ch; margin:0 0 34px; }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:40px; }
+  .stat-strip{ display:flex; gap:36px; flex-wrap:wrap; }
+  .stat{ }
+  .stat b{ font-family:"Space Grotesk"; font-size:26px; display:block; font-weight:700; }
+  .stat span{ font-size:13px; color:var(--muted); }
+
+  /* ---------- hero mockup ---------- */
+  .hero-art{ position:relative; height:440px; }
+  .mock-card{
+    position:absolute; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-m);
+    box-shadow:var(--shadow-lg); overflow:hidden;
+  }
+  .mock-terminal{
+    width:88%; left:6%; top:6%; padding:0; z-index:3;
+    animation:drift1 8s ease-in-out infinite;
+  }
+  .mock-terminal .tbar{ display:flex; gap:6px; padding:12px 14px; background:var(--surface-2); border-bottom:1px solid var(--border); }
+  .mock-terminal .tbar i{ width:9px; height:9px; border-radius:50%; display:block; }
+  .mock-terminal .tbar i:nth-child(1){ background:#ff5f57; }
+  .mock-terminal .tbar i:nth-child(2){ background:#febc2e; }
+  .mock-terminal .tbar i:nth-child(3){ background:#28c840; }
+  .mock-terminal pre{ margin:0; padding:18px 18px 22px; font-size:12.6px; color:var(--text); line-height:1.75; min-height:150px; }
+  .mock-terminal .c1{ color:var(--accent-3); } .mock-terminal .c2{ color:var(--accent-2); } .mock-terminal .c3{ color:var(--muted-2); }
+  .caret{ display:inline-block; width:7px; height:14px; background:var(--accent); vertical-align:-2px; animation:blink 1s step-end infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .mock-chart{ width:60%; right:0; bottom:4%; padding:16px; z-index:2; animation:drift2 9s ease-in-out infinite; }
+  .mock-chart .chart-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+  .mock-chart .chart-head b{ font-size:12.5px; }
+  .mock-chart .chart-head span{ font-size:11px; color:var(--accent-2); background:rgba(var(--accent2-rgb),0.12); padding:3px 8px; border-radius:999px; }
+  .bars{ display:flex; align-items:flex-end; gap:6px; height:70px; }
+  .bars i{ flex:1; background:linear-gradient(180deg, var(--accent), var(--accent-3)); border-radius:4px 4px 0 0; animation:grow 1.4s ease forwards; transform-origin:bottom; }
+
+  .mock-badge{ left:0; bottom:14%; padding:12px 16px; display:flex; align-items:center; gap:10px; z-index:4; animation:drift1 7s ease-in-out infinite reverse; }
+  .mock-badge .ic{ width:34px; height:34px; border-radius:9px; background:rgba(var(--accent-rgb),0.12); display:flex; align-items:center; justify-content:center; color:var(--accent); }
+  .mock-badge b{ display:block; font-size:13px; } .mock-badge span{ font-size:11.5px; color:var(--muted); }
+
+  @keyframes drift1{ 0%,100%{ transform:translateY(0) rotate(-1deg); } 50%{ transform:translateY(-10px) rotate(0.5deg); } }
+  @keyframes drift2{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(10px); } }
+  @keyframes grow{ from{ transform:scaleY(0); } to{ transform:scaleY(1); } }
+  @media (prefers-reduced-motion:reduce){
+    .mock-terminal,.mock-chart,.mock-badge,.blob,.eyebrow .dot{ animation:none !important; }
+  }
+
+  /* ---------- marquee ---------- */
+  .marquee-wrap{ padding:36px 0; border-top:1px solid var(--border-soft); border-bottom:1px solid var(--border-soft); background:var(--bg-soft); overflow:hidden; }
+  .marquee{ display:flex; gap:14px; width:max-content; animation:scrollx 26s linear infinite; }
+  .marquee:hover{ animation-play-state:paused; }
+  @keyframes scrollx{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  .mchip{ display:flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--border); padding:9px 16px; border-radius:999px; font-size:13.5px; color:var(--muted); white-space:nowrap; }
+  .mchip b{ color:var(--text); font-weight:600; }
+  @media (prefers-reduced-motion:reduce){ .marquee{ animation:none; flex-wrap:wrap; } }
+
+  /* ---------- section headers ---------- */
+  .sec-head{ max-width:640px; margin-bottom:56px; }
+  .kicker{ display:inline-block; font-size:13px; font-weight:600; color:var(--accent); margin-bottom:10px; }
+  .sec-head h2{ font-size:clamp(28px,3.4vw,38px); margin:0 0 14px; font-weight:700; }
+  .sec-head p{ color:var(--muted); font-size:16.5px; margin:0; }
+
+  /* ---------- products ---------- */
+  .products{ background:var(--bg-soft); }
+  .product-grid{ display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  .product-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-l);
+    padding:0; display:flex; flex-direction:column; box-shadow:var(--shadow); overflow:hidden;
+    transition:transform .25s, box-shadow .25s;
+  }
+  .product-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+  .product-visual{ height:140px; position:relative; overflow:hidden; background:var(--surface-2); }
+  .product-visual svg{ position:absolute; inset:0; width:100%; height:100%; }
+  .product-body{ padding:32px 34px 34px; }
+  .product-card .tag{ font-size:12.5px; color:var(--accent-2); font-weight:700; }
+  .product-card h3{ font-size:25px; margin:4px 0 10px; font-weight:700; }
+  .product-card p.desc{ color:var(--muted); margin:0 0 18px; font-size:15.3px; }
+  .feat-list{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:11px 16px; }
+  .feat-list li{ font-size:13.8px; color:var(--text); display:flex; gap:9px; align-items:flex-start; }
+  .feat-list li::before{
+    content:"✓"; color:var(--accent); font-weight:700; font-size:12px; margin-top:1px;
+  }
+
+  /* ---------- services bento ---------- */
+  .bento{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-m);
+    padding:30px; transition:transform .22s, box-shadow .22s, border-color .22s;
+  }
+  .card:hover{ transform:translateY(-5px); box-shadow:var(--shadow); border-color:rgba(var(--accent-rgb),0.3); }
+  .card .icn-wrap{ width:44px; height:44px; border-radius:12px; background:rgba(var(--accent-rgb),0.1); display:flex; align-items:center; justify-content:center; margin-bottom:18px; transition:transform .25s; }
+  .card:hover .icn-wrap{ transform:scale(1.08) rotate(-4deg); }
+  .card .icn{ width:22px; height:22px; color:var(--accent); }
+  .card h3{ font-size:18px; margin:0 0 8px; font-weight:600; }
+  .card p{ color:var(--muted); font-size:14.5px; margin:0; }
+  .card.wide{ grid-column:span 2; background:linear-gradient(135deg, rgba(var(--accent-rgb),0.07), var(--surface) 55%); display:flex; align-items:center; gap:22px; }
+  .card.wide .icn-wrap{ margin-bottom:0; flex:none; }
+  .card.wide h3{ font-size:20px; }
+  .card.wide p{ font-size:14.6px; max-width:48ch; }
+
+  /* ---------- process ---------- */
+  .process-line{ position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+  .process-line::before{
+    content:""; position:absolute; top:23px; left:calc(100%/6); right:calc(100%/6); height:2px;
+    background:var(--border); z-index:0; overflow:hidden;
+  }
+  .process-line::after{
+    content:""; position:absolute; top:23px; left:calc(100%/6); width:0%; height:2px;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2)); z-index:0; transition:width 1.4s ease;
+  }
+  .process-line.in::after{ width:66.66%; }
+  .p-step{ position:relative; z-index:1; }
+  .p-num{
+    width:48px; height:48px; border-radius:50%; background:var(--surface); border:2px solid var(--border);
+    display:flex; align-items:center; justify-content:center; font-family:"Space Grotesk"; font-weight:700;
+    color:var(--accent); margin-bottom:20px; transition:border-color .3s, transform .3s;
+  }
+  .process-line.in .p-num{ border-color:var(--accent); }
+  .p-step h3{ font-size:19px; margin:0 0 10px; font-weight:600; }
+  .p-step p{ color:var(--muted); font-size:15px; margin:0; max-width:34ch; }
+
+  /* ---------- cta band ---------- */
+  .cta-band{ background:var(--bg-soft); }
+  .cta-inner{
+    border-radius:var(--radius-l); padding:58px; background:linear-gradient(135deg, var(--text) 0%, #22263a 100%); color:#fff; border:1px solid var(--border);
+    display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px; align-items:center; position:relative; overflow:hidden;
+  }
+  .cta-inner::before{ content:""; position:absolute; width:260px; height:260px; background:var(--accent); filter:blur(90px); opacity:0.35; top:-80px; right:-40px; }
+  .cta-inner h2{ font-size:clamp(24px,3vw,32px); margin:0 0 14px; font-weight:700; position:relative; }
+  .cta-inner p{ color:rgba(255,255,255,0.72); margin:0; font-size:16px; max-width:48ch; position:relative; }
+  .cta-actions{ display:flex; flex-direction:column; gap:14px; position:relative; }
+  .cta-actions .btn-primary{ box-shadow:0 8px 24px rgba(0,0,0,0.3); }
+  .contact-line{ display:flex; align-items:center; gap:10px; font-size:14.5px; color:rgba(255,255,255,0.75); }
+  .contact-line svg{ width:17px; height:17px; color:var(--accent); flex:none; }
+
+  /* ---------- footer ---------- */
+  footer{ padding:64px 24px 40px; }
+  .foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px; }
+  .foot-brand p{ color:var(--muted); font-size:14.5px; max-width:32ch; margin:14px 0 0; }
+  .foot-col h4{ font-size:13.5px; color:var(--text); margin:0 0 16px; font-weight:600; }
+  .foot-col ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px; }
+  .foot-col a{ text-decoration:none; color:var(--muted); font-size:14px; }
+  .foot-col a:hover{ color:var(--accent); }
+  .foot-bottom{
+    border-top:1px solid var(--border-soft); padding-top:24px; display:flex; justify-content:space-between;
+    flex-wrap:wrap; gap:12px; color:var(--muted-2); font-size:13px;
+  }
+
+  /* ---------- festival preview switcher ---------- */
+  #fx-toggle{
+    position:fixed; bottom:22px; right:22px; z-index:80; width:50px; height:50px; border-radius:50%;
+    background:var(--surface); color:var(--text); border:1px solid var(--border); font-size:20px; cursor:pointer;
+    box-shadow:var(--shadow-lg); display:flex; align-items:center; justify-content:center;
+  }
+  #fx-panel{
+    position:fixed; bottom:80px; right:22px; z-index:80; background:var(--surface); border:1px solid var(--border);
+    border-radius:14px; padding:10px; width:220px; display:none; flex-direction:column; gap:2px;
+    box-shadow:var(--shadow-lg); max-height:70vh; overflow:auto;
+  }
+  #fx-panel.open{ display:flex; }
+  #fx-panel .fx-label{ font-size:11.5px; color:var(--muted); padding:8px 10px 4px; }
+  #fx-panel button{
+    text-align:left; background:none; border:none; color:var(--text); padding:9px 10px; border-radius:8px;
+    cursor:pointer; font-size:13.5px; font-family:inherit;
+  }
+  #fx-panel button:hover{ background:var(--surface-2); }
+  #fx-panel button.active{ color:var(--accent); font-weight:600; }
+
+  canvas#fx-canvas{ position:fixed; inset:0; z-index:65; pointer-events:none; }
+
+  /* ---------- chatbot ---------- */
+  #chat-launcher{
+    position:fixed; bottom:22px; left:22px; z-index:80; width:60px; height:60px; border-radius:50%;
+    background:linear-gradient(135deg, var(--accent), var(--accent-2)); border:none; cursor:pointer;
+    box-shadow:0 12px 30px rgba(var(--accent-rgb),0.4); display:flex; align-items:center; justify-content:center;
+    font-size:26px; color:#fff; transition:transform .2s;
+  }
+  #chat-launcher:hover{ transform:scale(1.06); }
+  #chat-launcher .ping{
+    position:absolute; top:-3px; right:-3px; width:14px; height:14px; border-radius:50%; background:#ff3b3b;
+    border:2px solid #fff; display:none;
+  }
+  #chat-launcher.has-ping .ping{ display:block; animation:pulse 1.6s ease-in-out infinite; }
+
+  #chat-bubble{
+    position:fixed; bottom:92px; left:22px; z-index:79; max-width:250px; background:var(--surface);
+    border:1px solid var(--border); border-radius:16px 16px 16px 4px; padding:14px 16px; box-shadow:var(--shadow-lg);
+    font-size:13.6px; display:none; opacity:0; transform:translateY(8px); transition:opacity .3s, transform .3s;
+  }
+  #chat-bubble.show{ display:block; }
+  #chat-bubble.visible{ opacity:1; transform:translateY(0); }
+  #chat-bubble button.bclose{ position:absolute; top:6px; right:8px; background:none; border:none; color:var(--muted); cursor:pointer; font-size:13px; }
+
+  #chat-panel{
+    position:fixed; bottom:92px; left:22px; z-index:81; width:340px; max-width:calc(100vw - 32px); height:460px;
+    background:var(--surface); border:1px solid var(--border); border-radius:18px; box-shadow:var(--shadow-lg);
+    display:none; flex-direction:column; overflow:hidden;
+  }
+  #chat-panel.open{ display:flex; }
+  .chat-head{ padding:16px 18px; background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#fff; display:flex; align-items:center; gap:10px; }
+  .chat-head .av{ width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.25); display:flex; align-items:center; justify-content:center; font-size:16px; }
+  .chat-head b{ display:block; font-size:14.5px; }
+  .chat-head span{ font-size:11.5px; opacity:0.85; }
+  .chat-head .cclose{ margin-left:auto; background:rgba(255,255,255,0.2); border:none; color:#fff; width:26px; height:26px; border-radius:50%; cursor:pointer; }
+  .chat-body{ flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; background:var(--bg-soft); }
+  .msg{ max-width:82%; padding:10px 13px; border-radius:14px; font-size:13.6px; line-height:1.5; }
+  .msg.bot{ background:var(--surface); border:1px solid var(--border); align-self:flex-start; border-bottom-left-radius:4px; }
+  .msg.user{ background:var(--text); color:#fff; align-self:flex-end; border-bottom-right-radius:4px; }
+  .msg.typing span{ display:inline-block; width:5px; height:5px; border-radius:50%; background:var(--muted); margin-right:3px; animation:blinkdot 1.2s infinite; }
+  .msg.typing span:nth-child(2){ animation-delay:.2s; } .msg.typing span:nth-child(3){ animation-delay:.4s; }
+  @keyframes blinkdot{ 0%,80%,100%{ opacity:0.2; } 40%{ opacity:1; } }
+  .chat-suggest{ display:flex; flex-wrap:wrap; gap:6px; padding:0 16px 12px; background:var(--bg-soft); }
+  .chat-suggest button{ font-size:12px; background:var(--surface); border:1px solid var(--border); padding:6px 11px; border-radius:999px; cursor:pointer; color:var(--text); }
+  .chat-suggest button:hover{ border-color:var(--accent); color:var(--accent); }
+  .chat-input{ display:flex; gap:8px; padding:12px; border-top:1px solid var(--border); background:var(--surface); }
+  .chat-input input{ flex:1; border:1px solid var(--border); border-radius:999px; padding:10px 15px; font-size:13.6px; font-family:inherit; outline:none; }
+  .chat-input input:focus{ border-color:var(--accent); }
+  .chat-input button{ width:38px; height:38px; border-radius:50%; border:none; background:var(--accent); color:#fff; cursor:pointer; flex:none; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    nav.links{ display:none; }
+    .burger{ display:flex; align-items:center; justify-content:center; }
+    .hero .wrap{ grid-template-columns:1fr; }
+    .hero-art{ height:320px; max-width:420px; margin:0 auto; }
+    .product-grid{ grid-template-columns:1fr; }
+    .bento{ grid-template-columns:1fr 1fr; }
+    .card.wide{ grid-column:span 2; flex-direction:column; align-items:flex-start; }
+    .process-line{ grid-template-columns:1fr; }
+    .process-line::before,.process-line::after{ display:none; }
+    .cta-inner{ grid-template-columns:1fr; padding:36px; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:560px){
+    section{ padding:72px 18px; }
+    .bento{ grid-template-columns:1fr; }
+    .card.wide{ grid-column:span 1; }
+    .feat-list{ grid-template-columns:1fr; }
+    .foot-grid{ grid-template-columns:1fr; }
+    #fx-panel{ width:190px; right:14px; }
+    #fx-toggle{ right:14px; bottom:16px; width:46px; height:46px; }
+    #chat-panel{ left:14px; right:14px; width:auto; }
+    #chat-launcher{ left:14px; bottom:16px; width:54px; height:54px; }
+    #chat-bubble{ left:14px; }
+    .stat-strip{ gap:22px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="ribbon">
+  <span id="ribbon-text"></span>
+  <button class="rclose" id="ribbon-close" aria-label="Dismiss">×</button>
+</div>
+
+<canvas id="fx-canvas" aria-hidden="true"></canvas>
+
+<header class="site">
+  <div class="nav">
+    <a href="#top" class="brand">
+      <svg class="mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="32" height="32" rx="9" fill="var(--surface-2)" stroke="var(--border)"/>
+        <rect x="9" y="9" width="6" height="6" rx="1.4" fill="var(--accent)"/>
+        <rect x="19" y="9" width="6" height="6" rx="1.4" fill="var(--accent-3)"/>
+        <rect x="9" y="19" width="6" height="6" rx="1.4" fill="var(--accent-3)"/>
+        <rect x="19" y="19" width="6" height="6" rx="1.4" fill="var(--accent)"/>
+      </svg>
+      <span class="word">Bent Ray<span>TECHNOLOGIES</span></span>
+    </a>
+    <nav class="links">
+      <a href="#products">Products</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="navcta">
+      <a href="#contact" class="btn btn-primary">Start a project</a>
+      <button class="burger" id="burgerBtn" aria-label="Open menu">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 5H16M2 9H16M2 13H16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="links" id="mobileNav" style="display:none; flex-direction:column; gap:0; padding:0 24px 18px;">
+    <a href="#products" style="padding:10px 0;">Products</a>
+    <a href="#services" style="padding:10px 0;">Services</a>
+    <a href="#process" style="padding:10px 0;">Process</a>
+    <a href="#contact" style="padding:10px 0;">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-bg"><div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div></div>
+    <div class="wrap">
+      <div class="reveal in">
+        <span class="eyebrow"><span class="dot"></span> Software &amp; digital services, based in Kathmandu</span>
+        <h1>Software that runs Nepal's businesses — <span class="grad">built, hosted, and supported</span> right here.</h1>
+        <p class="lead">From accounting and payroll software to hosting, apps, and websites — Bent Ray Technologies designs, builds, and maintains the systems your business depends on, day in and day out.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary">Talk to our team</a>
+          <a href="#products" class="btn btn-ghost">Explore our products</a>
+        </div>
+        <div class="stat-strip">
+          <div class="stat"><b data-count="2">0</b><span>In-house flagship products</span></div>
+          <div class="stat"><b data-count="6">0</b><span>Core services offered</span></div>
+          <div class="stat"><b data-count="24" data-suffix="/7">0</b><span>Support &amp; hosting uptime watch</span></div>
+        </div>
+      </div>
+      <div class="hero-art reveal in">
+        <div class="mock-card mock-terminal">
+          <div class="tbar"><i></i><i></i><i></i></div>
+          <pre><span class="c3">~/bentray</span> <span class="c1">$</span> deploy accswift --env prod
+<span class="c2">✓</span> build compiled in 1.8s
+<span class="c2">✓</span> payroll module synced
+<span class="c2">✓</span> hosting healthy · 24/7 monitor on
+<span class="c1">$</span> <span class="caret"></span></pre>
+        </div>
+        <div class="mock-card mock-chart">
+          <div class="chart-head"><b>Monthly active use</b><span>Stable</span></div>
+          <div class="bars">
+            <i style="height:38%"></i><i style="height:55%"></i><i style="height:46%"></i>
+            <i style="height:70%"></i><i style="height:62%"></i><i style="height:82%"></i><i style="height:74%"></i>
+          </div>
+        </div>
+        <div class="mock-card mock-badge">
+          <div class="ic">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div><b>Payroll run complete</b><span>FlexYear · this month</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee-wrap">
+    <div class="marquee" id="marquee">
+      <span class="mchip"><b>AccSwift™</b> accounting</span>
+      <span class="mchip"><b>FlexYear</b> payroll &amp; HR</span>
+      <span class="mchip">Web hosting</span>
+      <span class="mchip">Custom software</span>
+      <span class="mchip">Mobile apps</span>
+      <span class="mchip">Web design</span>
+      <span class="mchip">SEO</span>
+      <span class="mchip">IT consulting</span>
+      <span class="mchip">24/7 support</span>
+      <span class="mchip">Kathmandu, Nepal</span>
+    </div>
+  </div>
+
+  <section class="products" id="products">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker">Products</span>
+        <h2>Our flagship products</h2>
+        <p>Two products built entirely in-house, shaped by years of watching how Nepali businesses actually work.</p>
+      </div>
+      <div class="product-grid reveal-stagger">
+        <div class="product-card">
+          <div class="product-visual">
+            <svg viewBox="0 0 400 140" preserveAspectRatio="none">
+              <rect width="400" height="140" fill="var(--surface-2)"/>
+              <polyline points="10,110 60,95 110,100 160,70 210,80 260,45 310,55 390,25" fill="none" stroke="var(--accent)" stroke-width="3"/>
+              <circle cx="390" cy="25" r="5" fill="var(--accent)"/>
+            </svg>
+          </div>
+          <div class="product-body">
+            <span class="tag">Accounting software</span>
+            <h3>AccSwift™</h3>
+            <p class="desc">An intuitive, robust, multi-user accounting solution that fits how businesses in Nepal actually keep their books — invoicing, ledgers, inventory, and reporting, all in one place.</p>
+            <ul class="feat-list">
+              <li>Multi-user access &amp; permissions</li>
+              <li>VAT-ready reporting</li>
+              <li>Inventory &amp; billing built in</li>
+              <li>Grows from small shop to enterprise</li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-visual">
+            <svg viewBox="0 0 400 140" preserveAspectRatio="none">
+              <rect width="400" height="140" fill="var(--surface-2)"/>
+              <g fill="var(--accent-3)" opacity="0.85">
+                <rect x="20" y="90" width="24" height="34" rx="3"/><rect x="55" y="70" width="24" height="54" rx="3"/>
+                <rect x="90" y="50" width="24" height="74" rx="3"/><rect x="125" y="78" width="24" height="46" rx="3"/>
+                <rect x="160" y="60" width="24" height="64" rx="3"/><rect x="195" y="40" width="24" height="84" rx="3"/>
+              </g>
+              <circle cx="330" cy="55" r="34" fill="none" stroke="var(--accent-2)" stroke-width="8" stroke-dasharray="160" stroke-dashoffset="40" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="product-body">
+            <span class="tag">HR, attendance &amp; payroll</span>
+            <h3>FlexYear</h3>
+            <p class="desc">An enterprise-wide solution for attendance and payroll management that gives HR teams one connected system — from clock-in to payslip.</p>
+            <ul class="feat-list">
+              <li>Biometric-ready attendance</li>
+              <li>Automated payroll runs</li>
+              <li>Leave &amp; shift management</li>
+              <li>Employee self-service portal</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker">Services</span>
+        <h2>Everything else your business needs online</h2>
+        <p>We also build and support the infrastructure and channels around your software, so you're not stitching together five different vendors.</p>
+      </div>
+      <div class="bento reveal-stagger">
+        <div class="card">
+          <div class="icn-wrap"><svg class="icn" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1116 0 8 8 0 01-16 0z" stroke="currentColor" stroke-width="1.6"/><path d="M4 12h16M12 4c2.2 2.2 3.3 5 3.3 8s-1.1 5.8-3.3 8c-2.2-2.2-3.3-5-3.3-8s1.1-5.8 3.3-8z" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <h3>Web hosting</h3>
+          <p>Reliable, high-availability hosting, reseller hosting, and domain registration, backed by 24/7 support so your site never goes dark.</p>
+        </div>
+        <div class="card">
+          <div class="icn-wrap"><svg class="icn" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <h3>Software development</h3>
+          <p>Custom software for any OS, browser, or device — engineered with modern tools and built to scale as your business grows.</p>
+        </div>
+        <div class="card">
+          <div class="icn-wrap"><svg class="icn" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <h3>Web design</h3>
+          <p>Hand-crafted, responsive websites that load fast, look sharp on any screen, and represent your business the way it deserves.</p>
+        </div>
+        <div class="card">
+          <div class="icn-wrap"><svg class="icn" viewBox="0 0 24 24" fill="none"><rect x="7" y="2" width="10" height="20" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M11 18h2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <h3>Mobile apps</h3>
+          <p>Native and cross-platform apps shaped around your idea, built with the same care for quality and security as everything else we ship.</p>
+        </div>
+        <div class="card">
+          <div class="icn-wrap"><svg class="icn" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <h3>SEO</h3>
+          <p>We help the right people find you — keyword strategy, on-page optimization, and ongoing tuning to grow your organic traffic.</p>
+        </div>
+        <div class="card wide">
+          <div class="icn-wrap"><svg class="icn" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.5 5.5L20 9l-4.2 3.6L17 18l-5-3-5 3 1.2-5.4L4 9l5.5-1.5L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+          <div>
+            <h3>IT consulting &amp; digital transformation</h3>
+            <p>Deep technical expertise for organizations planning a bigger shift — process automation, systems integration, and a practical roadmap to modernize how your team works, not just another audit deck.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="process" id="process">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker">Process</span>
+        <h2>How we build</h2>
+        <p>Every product, from a small website to a company-wide system, moves through the same three stages.</p>
+      </div>
+      <div class="process-line reveal" id="processLine">
+        <div class="p-step">
+          <div class="p-num">1</div>
+          <h3>Ideate</h3>
+          <p>We turn a business need into a clear product concept, sketching out what it should do before a line of code is written.</p>
+        </div>
+        <div class="p-step">
+          <div class="p-num">2</div>
+          <h3>Engineer</h3>
+          <p>Our engineers build the product to spec, with regular check-ins so nothing drifts from what you actually asked for.</p>
+        </div>
+        <div class="p-step">
+          <div class="p-num">3</div>
+          <h3>Launch &amp; refine</h3>
+          <p>After testing, we launch, then keep listening — refining the product based on how your team actually uses it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" id="contact">
+    <div class="wrap">
+      <div class="cta-inner reveal">
+        <div>
+          <h2 id="ctaHeadline">Let's build something reliable together.</h2>
+          <p id="ctaSub">Tell us what you're trying to solve — we'll tell you how we'd build it.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="mailto:info@bentraytech.com?subject=Project%20enquiry" class="btn btn-primary">Email us</a>
+          <div class="contact-line">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11.5A7 7 0 105 9.5C5 14.9 12 21 12 21z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9.5" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg>
+            Kathmandu, Nepal
+          </div>
+          <div class="contact-line">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.6"/></svg>
+            info@bentraytech.com
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="brand">
+          <svg class="mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="32" height="32" rx="9" fill="var(--surface-2)" stroke="var(--border)"/>
+            <rect x="9" y="9" width="6" height="6" rx="1.4" fill="var(--accent)"/>
+            <rect x="19" y="9" width="6" height="6" rx="1.4" fill="var(--accent-3)"/>
+            <rect x="9" y="19" width="6" height="6" rx="1.4" fill="var(--accent-3)"/>
+            <rect x="19" y="19" width="6" height="6" rx="1.4" fill="var(--accent)"/>
+          </svg>
+          <span class="word">Bent Ray<span>TECHNOLOGIES</span></span>
+        </a>
+        <p>Software, hosting, and digital services for businesses across Nepal.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#products">AccSwift™</a></li>
+          <li><a href="#products">FlexYear</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Web hosting</a></li>
+          <li><a href="#services">Software development</a></li>
+          <li><a href="#services">Web design</a></li>
+          <li><a href="#services">Mobile apps</a></li>
+          <li><a href="#services">SEO</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#process">Our process</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span id="footYear">© 2026 Bent Ray Technologies. Web design &amp; software, Kathmandu, Nepal.</span>
+      <span id="footFestival"></span>
+    </div>
+  </div>
+</footer>
+
+<button id="fx-toggle" aria-label="Preview festival themes" title="Preview festival themes">🎉</button>
+<div id="fx-panel">
+  <div class="fx-label">Preview a festival theme</div>
+  <button data-fx="auto">Automatic (today)</button>
+  <button data-fx="default">No festival</button>
+  <button data-fx="maghesankranti">Maghe Sankranti</button>
+  <button data-fx="holi">Holi</button>
+  <button data-fx="newyear">Nepali New Year</button>
+  <button data-fx="buddhajayanti">Buddha Jayanti</button>
+  <button data-fx="teej">Teej</button>
+  <button data-fx="dashain">Dashain</button>
+  <button data-fx="tihar">Tihar</button>
+  <button data-fx="christmas">Christmas</button>
+</div>
+
+<div id="chat-bubble">
+  <button class="bclose" id="bubbleClose" aria-label="Dismiss">×</button>
+  <span id="bubbleText">👋 Hi! I'm Ray. Ask me about our products, services, or how to get started.</span>
+</div>
+<button id="chat-launcher" aria-label="Open chat"><span id="launcherIcon">💬</span><span class="ping"></span></button>
+<div id="chat-panel">
+  <div class="chat-head">
+    <div class="av" id="chatAvatar">💬</div>
+    <div><b>Ray</b><span id="chatStatus">Bent Ray Technologies assistant</span></div>
+    <button class="cclose" id="chatClose" aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-suggest" id="chatSuggest">
+    <button data-q="What does AccSwift do?">What does AccSwift do?</button>
+    <button data-q="Tell me about FlexYear">Tell me about FlexYear</button>
+    <button data-q="Do you offer web hosting?">Web hosting?</button>
+    <button data-q="How do I start a project?">How do I start?</button>
+  </div>
+  <form class="chat-input" id="chatForm">
+    <input type="text" id="chatInput" placeholder="Type a message…" autocomplete="off">
+    <button type="submit" aria-label="Send">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 11l18-8-8 18-2-8-8-2z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>
+    </button>
+  </form>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ================= festival calendar (2026 / BS 2083 dates) ================= */
+  var FESTIVALS = [
+    { key:"maghesankranti", label:"Maghe Sankranti", start:"2026-01-14", end:"2026-01-14", emoji:"🪁",
+      greeting:"🪁 Happy Maghe Sankranti! Warm wishes from Bent Ray Technologies.", type:"kite" },
+    { key:"holi", label:"Holi", start:"2026-03-03", end:"2026-03-04", emoji:"🎨",
+      greeting:"🎨 Happy Holi! May your work be as colourful as the day.", type:"powder" },
+    { key:"newyear", label:"Nepali New Year 2083", start:"2026-04-14", end:"2026-04-15", emoji:"🎉",
+      greeting:"🎉 Shubha Nepali Sambat 2083! Happy New Year from Bent Ray Technologies.", type:"confetti" },
+    { key:"buddhajayanti", label:"Buddha Jayanti", start:"2026-05-01", end:"2026-05-01", emoji:"☸️",
+      greeting:"☸️ Buddha Jayanti wishes for peace, from Bent Ray Technologies.", type:"petal" },
+    { key:"teej", label:"Teej", start:"2026-09-14", end:"2026-09-14", emoji:"💃",
+      greeting:"💃 Happy Teej! Wishing you strength and celebration.", type:"petal" },
+    { key:"dashain", label:"Dashain", start:"2026-10-11", end:"2026-10-24", emoji:"🪁",
+      greeting:"🪁 Dashain ko Hardik Shubhakamana! Happy Dashain from Bent Ray Technologies.", type:"petal" },
+    { key:"tihar", label:"Tihar", start:"2026-11-08", end:"2026-11-11", emoji:"🪔",
+      greeting:"🪔 Shubha Tihar! May your business shine bright this festival of lights.", type:"spark" },
+    { key:"christmas", label:"Christmas", start:"2026-12-24", end:"2026-12-26", emoji:"🎄",
+      greeting:"🎄 Merry Christmas from all of us at Bent Ray Technologies!", type:"snow" }
+  ];
+
+  function ymd(d){ return d.toISOString().slice(0,10); }
+  function getActiveFestival(date){
+    var s = ymd(date);
+    for (var i=0;i<FESTIVALS.length;i++){ if (s >= FESTIVALS[i].start && s <= FESTIVALS[i].end) return FESTIVALS[i]; }
+    return null;
+  }
+
+  var storage = {
+    get:function(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } },
+    set:function(k,v){ try{ localStorage.setItem(k,v); }catch(e){} },
+    sget:function(k){ try{ return sessionStorage.getItem(k); }catch(e){ return null; } },
+    sset:function(k,v){ try{ sessionStorage.setItem(k,v); }catch(e){} }
+  };
+
+  var html = document.documentElement;
+  var ribbon = document.getElementById("ribbon");
+  var ribbonText = document.getElementById("ribbon-text");
+  var ribbonClose = document.getElementById("ribbon-close");
+  var ctaHeadline = document.getElementById("ctaHeadline");
+  var ctaSub = document.getElementById("ctaSub");
+  var footFestival = document.getElementById("footFestival");
+  var launcherIcon = document.getElementById("launcherIcon");
+  var chatAvatar = document.getElementById("chatAvatar");
+
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var activeFestival = null;
+
+  function applyTheme(festival){
+    activeFestival = festival;
+    var key = festival ? festival.key : "default";
+    html.setAttribute("data-theme", key);
+
+    if (festival){
+      var dismissKey = "brt_dismiss_" + festival.key;
+      if (storage.sget(dismissKey) !== "1"){
+        ribbonText.textContent = festival.greeting;
+        ribbon.classList.add("show");
+      } else { ribbon.classList.remove("show"); }
+      ctaHeadline.textContent = "Let's build something reliable — this " + festival.label + ".";
+      ctaSub.textContent = "Whatever the season, we're here. Tell us what you're trying to solve and we'll tell you how we'd build it.";
+      footFestival.textContent = "Currently showing: " + festival.label + " theme 🎊";
+      launcherIcon.textContent = festival.emoji;
+      chatAvatar.textContent = festival.emoji;
+    } else {
+      ribbon.classList.remove("show");
+      ctaHeadline.textContent = "Let's build something reliable together.";
+      ctaSub.textContent = "Tell us what you're trying to solve — we'll tell you how we'd build it.";
+      footFestival.textContent = "";
+      launcherIcon.textContent = "💬";
+      chatAvatar.textContent = "💬";
+    }
+
+    ribbonClose.onclick = function(){
+      ribbon.classList.remove("show");
+      if (festival) storage.sset("brt_dismiss_" + festival.key, "1");
+    };
+
+    startFX(festival ? festival.type : null);
+    updatePanelActive(key);
+  }
+
+  /* ================= particle fx engine ================= */
+  var canvas = document.getElementById("fx-canvas");
+  var ctx = canvas.getContext("2d");
+  var particles = [], rafId = null, currentType = null, W = 0, H = 0;
+
+  function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  window.addEventListener("resize", resize); resize();
+
+  var PALETTES = {
+    kite:    { colors:["#e0a300","#e85b0f","#5b5fef"] },
+    powder:  { colors:["#e8298c","#f2b705","#0ea394","#5b5fef","#e85b0f"] },
+    confetti:{ colors:["#1fa85c","#e0a300","#e85b0f","#0ea394"] },
+    petal:   { colors:["#e85b0f","#b3222a","#f2914f"] },
+    spark:   { colors:["#e0a300","#e85b0f","#f7cf6a"] },
+    snow:    { colors:["#8fb7d8","#c8dbe9","#5b8fb0"] }
+  };
+
+  function makeParticle(type){
+    var pal = PALETTES[type].colors;
+    var color = pal[Math.floor(Math.random()*pal.length)];
+    var base = { type:type, color:color, x:Math.random()*W, y:-20-Math.random()*H*0.4,
+      size:4+Math.random()*6, rot:Math.random()*Math.PI*2, vrot:(Math.random()-0.5)*0.05,
+      sway:Math.random()*Math.PI*2, swaySpeed:0.01+Math.random()*0.02, alpha:0.6+Math.random()*0.3 };
+    if (type === "kite"){ base.y = H+20+Math.random()*H*0.5; base.vy=-(0.3+Math.random()*0.5); base.vx=0.15+Math.random()*0.3; base.size=11+Math.random()*8; }
+    else if (type === "spark"){ base.y = H+20+Math.random()*H*0.4; base.vy=-(0.25+Math.random()*0.4); base.vx=(Math.random()-0.5)*0.2; base.size=2.6+Math.random()*3; }
+    else if (type === "snow"){ base.vy=0.4+Math.random()*0.9; base.vx=(Math.random()-0.5)*0.3; base.size=2.4+Math.random()*3.4; }
+    else if (type === "confetti"){ base.vy=0.8+Math.random()*1.2; base.vx=(Math.random()-0.5)*0.6; base.size=5+Math.random()*4; }
+    else if (type === "powder"){ base.vy=0.5+Math.random()*0.9; base.vx=(Math.random()-0.5)*0.5; base.size=6+Math.random()*7; base.alpha=0.4+Math.random()*0.25; }
+    else { base.vy=0.4+Math.random()*0.7; base.vx=(Math.random()-0.5)*0.4; base.size=5+Math.random()*5; }
+    return base;
+  }
+
+  function drawParticle(p){
+    ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.globalAlpha=p.alpha;
+    if (p.type === "kite"){
+      ctx.fillStyle=p.color; ctx.beginPath();
+      ctx.moveTo(0,-p.size); ctx.lineTo(p.size*0.8,0); ctx.lineTo(0,p.size*1.6); ctx.lineTo(-p.size*0.8,0);
+      ctx.closePath(); ctx.fill();
+      ctx.strokeStyle="rgba(0,0,0,0.18)"; ctx.lineWidth=0.6;
+      ctx.beginPath(); ctx.moveTo(0,p.size*1.6); ctx.lineTo(0,p.size*1.6+10); ctx.stroke();
+    } else if (p.type === "spark"){
+      ctx.shadowColor=p.color; ctx.shadowBlur=10;
+      ctx.fillStyle=p.color; ctx.beginPath(); ctx.arc(0,0,p.size,0,Math.PI*2); ctx.fill();
+    } else if (p.type === "confetti"){
+      ctx.fillStyle=p.color; ctx.fillRect(-p.size/2,-p.size/3,p.size,p.size*0.6);
+    } else if (p.type === "snow"){
+      ctx.fillStyle=p.color; ctx.beginPath(); ctx.arc(0,0,p.size,0,Math.PI*2); ctx.fill();
+    } else if (p.type === "powder"){
+      var g2 = ctx.createRadialGradient(0,0,0,0,0,p.size);
+      g2.addColorStop(0,p.color); g2.addColorStop(1,"rgba(0,0,0,0)");
+      ctx.fillStyle=g2; ctx.beginPath(); ctx.arc(0,0,p.size,0,Math.PI*2); ctx.fill();
+    } else { ctx.fillStyle=p.color; ctx.beginPath(); ctx.ellipse(0,0,p.size,p.size*0.55,0,0,Math.PI*2); ctx.fill(); }
+    ctx.restore();
+  }
+
+  function step(){
+    ctx.clearRect(0,0,W,H);
+    for (var i=particles.length-1;i>=0;i--){
+      var p = particles[i];
+      p.sway += p.swaySpeed; p.x += p.vx + Math.sin(p.sway)*0.4; p.y += p.vy; p.rot += p.vrot;
+      drawParticle(p);
+      if (p.vy > 0 && p.y > H+30){ particles.splice(i,1); }
+      else if (p.vy < 0 && p.y < -30){ particles.splice(i,1); }
+    }
+    var target = densityFor(currentType);
+    while (particles.length < target){ particles.push(makeParticle(currentType)); }
+    rafId = requestAnimationFrame(step);
+  }
+  function densityFor(type){ if (!type) return 0; if (window.innerWidth < 640) return 16; return type === "spark" ? 24 : 30; }
+
+  function startFX(type){
+    currentType = type;
+    if (rafId){ cancelAnimationFrame(rafId); rafId = null; }
+    particles = []; ctx.clearRect(0,0,W,H);
+    if (!type) return;
+    if (reduceMotion){ for (var i=0;i<8;i++){ var p=makeParticle(type); p.y=Math.random()*H; drawParticle(p); } return; }
+    for (var j=0;j<densityFor(type);j++){ particles.push(makeParticle(type)); }
+    rafId = requestAnimationFrame(step);
+  }
+
+  /* ================= preview switcher ================= */
+  var fxToggle = document.getElementById("fx-toggle");
+  var fxPanel = document.getElementById("fx-panel");
+  fxToggle.addEventListener("click", function(){ fxPanel.classList.toggle("open"); });
+  document.addEventListener("click", function(e){
+    if (!fxPanel.contains(e.target) && e.target !== fxToggle){ fxPanel.classList.remove("open"); }
+  });
+  function findFestival(key){ for (var i=0;i<FESTIVALS.length;i++){ if (FESTIVALS[i].key === key) return FESTIVALS[i]; } return null; }
+  function updatePanelActive(key){ fxPanel.querySelectorAll("button").forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-fx")===key); }); }
+  fxPanel.addEventListener("click", function(e){
+    var btn = e.target.closest("button[data-fx]"); if (!btn) return;
+    var key = btn.getAttribute("data-fx");
+    if (key === "auto"){ storage.set("brt_theme_override",""); applyTheme(getActiveFestival(new Date())); }
+    else if (key === "default"){ storage.set("brt_theme_override","default"); applyTheme(null); }
+    else { storage.set("brt_theme_override", key); applyTheme(findFestival(key)); }
+  });
+
+  /* ================= mobile nav ================= */
+  var burger = document.getElementById("burgerBtn");
+  var mobileNav = document.getElementById("mobileNav");
+  burger.addEventListener("click", function(){ mobileNav.style.display = mobileNav.style.display === "flex" ? "none" : "flex"; });
+  mobileNav.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ mobileNav.style.display = "none"; }); });
+
+  /* ================= scroll reveal ================= */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold:0.18 });
+  document.querySelectorAll(".reveal, .reveal-stagger").forEach(function(el){ io.observe(el); });
+
+  /* count-up stats */
+  document.querySelectorAll(".stat b[data-count]").forEach(function(el){
+    var target = parseInt(el.getAttribute("data-count"),10);
+    var suffix = el.getAttribute("data-suffix") || "";
+    var statIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          e.target === el && animateCount(el, target, suffix);
+          statIo.unobserve(el);
+        }
+      });
+    }, { threshold:0.6 });
+    statIo.observe(el);
+  });
+  function animateCount(el, target, suffix){
+    if (reduceMotion){ el.textContent = target + suffix; return; }
+    var start = 0, dur = 900, t0 = performance.now();
+    function tick(now){
+      var p = Math.min(1,(now-t0)/dur);
+      el.textContent = Math.round(start + (target-start)*(1-Math.pow(1-p,3))) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  /* process line fill */
+  var processLine = document.getElementById("processLine");
+  new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add("in"); } });
+  }, { threshold:0.4 }).observe(processLine);
+
+  /* marquee duplicate for seamless loop */
+  var marquee = document.getElementById("marquee");
+  marquee.innerHTML += marquee.innerHTML;
+
+  /* ================= chatbot ================= */
+  var launcher = document.getElementById("chat-launcher");
+  var bubble = document.getElementById("chat-bubble");
+  var bubbleClose = document.getElementById("bubbleClose");
+  var panel = document.getElementById("chat-panel");
+  var chatClose = document.getElementById("chatClose");
+  var chatBody = document.getElementById("chatBody");
+  var chatForm = document.getElementById("chatForm");
+  var chatInput = document.getElementById("chatInput");
+  var chatSuggest = document.getElementById("chatSuggest");
+  var chatStatus = document.getElementById("chatStatus");
+
+  var COMPANY_CONTEXT =
+    "You are Ray, the friendly website assistant for Bent Ray Technologies, a software company based in Kathmandu, Nepal. " +
+    "Bent Ray builds two flagship in-house products: AccSwift (a multi-user accounting solution with invoicing, ledgers, inventory and VAT-ready reporting) " +
+    "and FlexYear (an enterprise attendance, payroll and HR management system). It also offers web hosting & domain registration, custom software development, " +
+    "responsive web design, mobile app development, SEO, and IT consulting / digital transformation. Contact: info@bentraytech.com, Kathmandu, Nepal. " +
+    "Answer briefly (2-4 sentences), in a warm, helpful, non-salesy tone, based only on the information above. If asked something unrelated or you don't know, " +
+    "say so honestly and suggest emailing info@bentraytech.com. Never invent prices, dates, or staff names.";
+
+  var sampleFn = null, sampleChecked = false;
+  var history = [];
+
+  function ensureSample(){
+    if (sampleChecked) return Promise.resolve(sampleFn);
+    sampleChecked = true;
+    if (!window.claude || !window.claude.use){ return Promise.resolve(null); }
+    return window.claude.use("sample").then(function(fn){ sampleFn = fn; return fn; }).catch(function(){ return null; });
+  }
+
+  function addMsg(text, who){
+    var d = document.createElement("div");
+    d.className = "msg " + who;
+    d.textContent = text;
+    chatBody.appendChild(d);
+    chatBody.scrollTop = chatBody.scrollHeight;
+    return d;
+  }
+  function addTyping(){
+    var d = document.createElement("div");
+    d.className = "msg bot typing";
+    d.innerHTML = "<span></span><span></span><span></span>";
+    chatBody.appendChild(d);
+    chatBody.scrollTop = chatBody.scrollHeight;
+    return d;
+  }
+
+  function fallbackAnswer(q){
+    var s = q.toLowerCase();
+    if (s.indexOf("accswift") > -1 || s.indexOf("accounting") > -1)
+      return "AccSwift™ is our multi-user accounting software — invoicing, ledgers, inventory and VAT-ready reporting in one place, built for how businesses in Nepal keep their books.";
+    if (s.indexOf("flexyear") > -1 || s.indexOf("payroll") > -1 || s.indexOf("hr") > -1 || s.indexOf("attendance") > -1)
+      return "FlexYear handles attendance and payroll end to end — biometric-ready attendance, automated payroll runs, leave management, and an employee self-service portal.";
+    if (s.indexOf("host") > -1 || s.indexOf("domain") > -1)
+      return "Yes — we offer reliable web hosting, reseller hosting, and domain registration, backed by 24/7 support.";
+    if (s.indexOf("app") > -1 || s.indexOf("mobile") > -1)
+      return "We build native and cross-platform mobile apps shaped around your idea, with the same focus on quality and security as our other products.";
+    if (s.indexOf("seo") > -1)
+      return "Our SEO work covers keyword strategy, on-page optimization, and ongoing tuning to help the right people find your site.";
+    if (s.indexOf("website") > -1 || s.indexOf("web design") > -1 || s.indexOf("design") > -1)
+      return "We hand-craft responsive websites that load fast and look sharp on any device — built to represent your business well.";
+    if (s.indexOf("start") > -1 || s.indexOf("quote") > -1 || s.indexOf("contact") > -1 || s.indexOf("price") > -1 || s.indexOf("cost") > -1)
+      return "The easiest way to start is to email info@bentraytech.com with a short note on what you're trying to build — our team will take it from there.";
+    if (s.indexOf("consult") > -1 || s.indexOf("transformation") > -1)
+      return "Our IT consulting team helps with process automation, systems integration, and a practical roadmap for modernizing how your organization works.";
+    return "I can tell you about AccSwift, FlexYear, hosting, software development, web design, mobile apps, SEO, or IT consulting. For anything specific to your project, email info@bentraytech.com.";
+  }
+
+  function sendMessage(text){
+    if (!text.trim()) return;
+    addMsg(text, "user");
+    history.push({ role:"user", content:text });
+    chatSuggest.style.display = "none";
+    var typing = addTyping();
+
+    ensureSample().then(function(fn){
+      if (!fn){
+        typing.remove();
+        var a = fallbackAnswer(text);
+        addMsg(a, "bot");
+        history.push({ role:"assistant", content:a });
+        return;
+      }
+      chatStatus.textContent = "thinking…";
+      var turns = [{ role:"user", content: COMPANY_CONTEXT }, { role:"assistant", content:"Understood — I'll help visitors as Ray." }]
+        .concat(history);
+      fn(turns, {
+        modelTier:"quick",
+        cache:false,
+        onText:function(u){ typing.querySelector ? null : null; }
+      }).then(function(res){
+        typing.remove();
+        var a = (res && res.text) ? res.text.trim() : fallbackAnswer(text);
+        addMsg(a, "bot");
+        history.push({ role:"assistant", content:a });
+        chatStatus.textContent = "Bent Ray Technologies assistant";
+      }).catch(function(){
+        typing.remove();
+        var a = fallbackAnswer(text);
+        addMsg(a, "bot");
+        history.push({ role:"assistant", content:a });
+        chatStatus.textContent = "Bent Ray Technologies assistant";
+      });
+    });
+  }
+
+  function openChat(){
+    panel.classList.add("open");
+    bubble.classList.remove("show","visible");
+    launcher.classList.remove("has-ping");
+    if (!chatBody.childElementCount){
+      var greet = activeFestival ? activeFestival.greeting + " I'm Ray — ask me anything about our products or services." :
+        "👋 Hi, I'm Ray! Ask me about AccSwift, FlexYear, hosting, apps, or how to start a project.";
+      addMsg(greet, "bot");
+    }
+    chatInput.focus();
+  }
+  launcher.addEventListener("click", function(){
+    panel.classList.contains("open") ? panel.classList.remove("open") : openChat();
+  });
+  chatClose.addEventListener("click", function(){ panel.classList.remove("open"); });
+  bubbleClose.addEventListener("click", function(e){ e.stopPropagation(); bubble.classList.remove("show","visible"); launcher.classList.add("has-ping"); });
+  bubble.addEventListener("click", openChat);
+  chatForm.addEventListener("submit", function(e){ e.preventDefault(); var v = chatInput.value; chatInput.value=""; sendMessage(v); });
+  chatSuggest.addEventListener("click", function(e){ var b = e.target.closest("button[data-q]"); if (b) sendMessage(b.getAttribute("data-q")); });
+
+  /* auto-appear chat bubble after a short delay, festival-aware */
+  window.addEventListener("load", function(){
+    setTimeout(function(){
+      if (panel.classList.contains("open")) return;
+      var text = activeFestival
+        ? activeFestival.greeting + " I'm Ray — happy to help."
+        : "👋 Hi! I'm Ray. Ask me about our products, services, or how to get started.";
+      document.getElementById("bubbleText").textContent = text;
+      bubble.classList.add("show");
+      requestAnimationFrame(function(){ bubble.classList.add("visible"); });
+      launcher.classList.add("has-ping");
+    }, 2600);
+  });
+
+  /* ================= init ================= */
+  var override = storage.get("brt_theme_override");
+  if (override === "default"){ applyTheme(null); }
+  else if (override){ applyTheme(findFestival(override) || getActiveFestival(new Date())); }
+  else { applyTheme(getActiveFestival(new Date())); }
+
+  document.getElementById("footYear").textContent =
+    "© " + new Date().getFullYear() + " Bent Ray Technologies. Web design & software, Kathmandu, Nepal.";
+})();
+</script>
+</body>
+</html>
